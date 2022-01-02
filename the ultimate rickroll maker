@@ -1,0 +1,32 @@
+import pyshorteners
+
+class neverGonnaGive:
+    def __init__(self):
+        self.link = "https://youtu.be/fabiBsQWDTY"
+
+    def askFor(self):
+        print("------------------------------------------------------------")
+        asking = input("Would you like a Rickroll in Disguise(yes or no): ").lower()
+        if asking == "no":
+            print('"gET tHe f oUtTa mA rOoM I aM pLaYiN mINecRaFT"')
+            return False
+        elif asking == "yes":
+            print("\n\n-------------------------------------------------------")
+            print("Okie Dokie Working on it! ")
+            print("-------------------------------------------------------")
+        else:
+            print("Look at this DUDEEEEEE.")
+            return False
+
+
+    def linkShortening(self):
+        linkSmol = pyshorteners.Shortener()
+        smollerLink = linkSmol.tinyurl.short(self.link)
+        print("-------------------------------------------------------")
+        print("Here is your link: "+str(smollerLink))
+        print("-------------------------------------------------------")
+        
+
+youUp = neverGonnaGive()
+youUp.askFor()
+youUp.linkShortening()
