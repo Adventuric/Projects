@@ -1,0 +1,173 @@
+import random
+import string
+from getpass import getpass
+
+firstNum = random.randrange(1,100)
+secondAlpha = random.choice(string.ascii_uppercase)
+thirdAlpha = random.choice(string.ascii_uppercase)
+fourthNum = random.randrange(1,100)
+fifthAlpha = random.choice(string.ascii_uppercase)
+sixthNum = random.randrange(1,100)
+seventhNum = random.randrange(1,100)
+
+accountNoConfig = str(firstNum)+secondAlpha+thirdAlpha+str(fourthNum)+fifthAlpha+str(sixthNum)
+
+nums = [1,2,3,4,5,6,7,8,9,0]
+
+
+class bankSignUp:
+    def __init__(self):
+        self.accName = "Guest"
+        self.balance = 0
+        self.accNo = "0AB1C23"
+        self.accPin = 0000
+        self.password = "joemama1"
+
+    def accCreation(self):
+        accCreate = input("Do you have an Exisiting Account (yes or no): ").lower()
+        while True:
+            if accCreate == "no":
+                self.accName = input("Enter a Account Name: ")
+                self.balance = 0
+                self.accNo = accountNoConfig
+                print("\n\n-----------------------------------------------------")
+                print("Welcome, "+self.accName+" your Account has been Created")
+                print("-----------------------------------------------------")
+                print("\n\n-----------------------------------------------------")
+                print("Your Current Balance is "+str(self.balance))
+                print("-----------------------------------------------------")
+                print("\n\n-----------------------------------------------------")
+                print("Your Account Number is "+str(self.accNo))
+                print("-----------------------------------------------------")
+                break
+            elif(accCreate == "yes") :
+                print("I Would Recommend You To NOT CREATE another Bank Account For Ethical Purposes")
+                break
+            else:
+                print("Invalid Option")
+                break
+
+    def pinCreation(self):
+        print("\n\n-----------------------------------------------------")
+        print("-----------------------------------------------------")
+        pinCreate = input("Enter a 4 digit/character PIN For Your Account: ")
+        if len(pinCreate) > 4:
+            print("Invalid Pin, Please Select a 4 digit/character Pin!")
+        else:
+            self.accPin = pinCreate
+            
+
+    def depWith(self):
+        print("-----------------------------------------------------")
+        print("-----------------------------------------------------")
+        askFor = input("Would you like to Deposit or Withdraw any Money (yes or no): ").lower()
+        while True:
+            if (askFor == "yes"):
+                print("-----------------------------------------------------")
+                print("Options: \n1.Deposit (1) \n2.Withdraw (2)")
+                print("-----------------------------------------------------")
+                selectionWD = input("Enter your Choice: ")
+                if (selectionWD == "1"):
+                    print("\n\n-----------------------------------------------------")
+                    print("-----------------------------------------------------")
+                    howMuch = int(input("How much money would you like to Deposit (Limit: 1 Million):  "))
+                    if howMuch <= 1000000:
+                        self.balance += int(howMuch)
+                        print("\n\n"+str(howMuch)+" ppc (pp coin) has been Deposited!")
+                        break
+                    elif howMuch != any(nums):
+                        print("Error pp: You F'ed up now!")
+                        break
+                    else:
+                        print("Error 69: You Messed Up!")
+                        break
+                elif (selectionWD == "2"):
+                    print("\n\n-----------------------------------------------------")
+                    print("-----------------------------------------------------")
+                    howMuch = int(input("How much money would you like to Withdraw (Limit: 1 Million):  "))
+                    if howMuch <= 1000000:
+                        self.balance -= int(howMuch)
+                        print("\n\n"+str(howMuch)+" ppc (ppcoin) has been Withdrawn!")
+                        break
+                    elif howMuch != any(nums):
+                        print("Error pp: You F'ed up now!")
+                        break
+                    else:
+                        print("Error 96: You Messed Up!")
+                        break
+            elif (askFor == "no"):
+                print("Oh Well, begone")
+                break
+            else:
+                print("error 404: Enter something which has sense Seaweed Brain!")
+                break
+
+    def passwordMaking(self):
+        print("\n\n-----------------------------------------------------")
+        print("-----------------------------------------------------")
+        while True:
+            passwdInp = getpass("Enter a 8 Chracter Password For Your Account: ")
+            if len(passwdInp) > 8 or len(passwdInp) < 8:
+                print("Please Enter a 8 Character Password!")
+            else:
+                self.password = passwdInp
+                break
+
+
+    def accNameGet(self):
+        print("-----------------------------------------------------")
+        print("Your Account Name is  "+self.accName)
+        print("-----------------------------------------------------")
+
+    def balanceGet(self):
+        print("-----------------------------------------------------")
+        print("Your Account Balance is  "+str(self.balance))
+        print("-----------------------------------------------------")
+
+    def accNoGet(self):
+        print("-----------------------------------------------------")
+        print("Your Account Number is  "+self.accNo)
+        print("-----------------------------------------------------")
+
+    def accPinGet(self):
+        print("-----------------------------------------------------")
+        print("Your Pin is  "+str(self.accPin))
+        print("-----------------------------------------------------")
+
+    def passwordGet(self):
+        askingName = input("What is you Account Name: ")
+        askingNumber = input("What is you Account No: ")
+        if askingName == self.accName and askingNumber == self.accNo:
+            print("-----------------------------------------------------")
+            print("Your Password is  "+str(self.password))
+            print("-----------------------------------------------------")
+        else:
+            return False
+
+
+bank = bankSignUp()
+bank.accCreation()
+yeNah = input("Would you like to Countinue(yes or no): ").lower()
+while True:
+    if yeNah == "no":
+        break
+    elif yeNah == "yes":
+        bank.pinCreation()
+        break
+    else:
+        break 
+while yeNah == "yes":
+    yeNah2 = input("Would you like to Countinue(yes or no): ").lower()
+    if yeNah2 == "no":
+        break
+    elif yeNah2 == "yes":
+        bank.depWith()
+        bank.passwordMaking()
+        break
+    else:
+        break 
+bank.accNameGet()
+bank.accNoGet()
+bank.accPinGet()
+bank.balanceGet()
+bank.passwordGet()
